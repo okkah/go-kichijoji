@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/slide.css">
 <link rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="js/openclose.js"></script>
+<script type="text/javascript" src="js/calendar.js"></script>
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -25,33 +26,16 @@
 <!--/inner-->
 </header>
 
-<!--スマホ用（480px以下端末）メニュー-->
-<nav id="menubar-s">
-<ul>
-<li><a href="index.html">ホーム</a></li>
-<li><a href="eat.html">食べる</a></li>
-<li><a href="shop.html">買う</a></li>
-<li><a href="watch.html">観る</a></li>
-<li><a href="play.html">遊ぶ</a></li>
-</ul>
-</nav>
-
 <div id="menu-mainimg">
-<!--PC向け（481px以上）スライドショー-->
+<!--スライドショー-->
 <aside id="mainimg">
 <img src="images/1.jpg" alt="" id="slide1"/>
 <img src="images/2.jpg" alt="" id="slide2"/>
 <img src="images/3.jpg" alt="" id="slide3"/>
 </aside>
-<!--スマホ向け（480px以下）スライドショー-->
-<aside id="mainimg-s">
-<img src="images/1s.jpg" alt="" id="slide1s"/>
-<img src="images/2s.jpg" alt="" id="slide2s"/>
-<img src="images/3s.jpg" alt="" id="slide3s"/>
-</aside>
 <!--もみじ画像-->
 <img src="images/headerimg.png" id="headerimg" alt="">
-<!--PC用（481px以上端末）メニュー-->
+<!--メニュー-->
 <nav id="menubar">
 <ul>
 <li><a href="eat.html"><b>食べる</b><span><b>Eating</b></span></a></li>
@@ -68,6 +52,11 @@
 <div id="main">
 
 <section id="new">
+<h2 id="newinfo_hdr" class="close">本サイトについて</h2>
+<p><br><img src="./images/kichijoji.jpg"><br><br>吉祥寺といえば「住みたい街」として長年注目を浴び続けている街の1つです。しかしその魅力は暮らしやすさに限らず、観光で訪れた日本人そして外国人観光客の心も虜にしてきました。 近代的な一面とレトロな街並み、そして自然や生き物たちの姿。 吉祥寺にはそんな様々な観光名所がたくさん潜んでいます。井の頭恩賜公園をはじめとしたデートスポットはもちろん、一人でも楽しめる穴場観光地まで。<br><br>本サイトでは「食べる」「買う」「観る」「遊ぶ」といったテーマから吉祥寺の魅力を解き明かします。<br><br></p>
+</section>
+
+<section id="new">
 <h2 id="newinfo_hdr" class="close">更新情報・お知らせ</h2>
 <dl id="newinfo">
 <dt>2017/10/25</dt>
@@ -75,53 +64,109 @@
 </dl>
 </section>
 
-<section>
-
-<h2>吉祥寺で何を食べる？</h2>
-
-</section>
-
 </div>
 <!--/main-->
 
 <div id="sub">
 
-<nav class="box1">
-<h2>SUB MENU</h2>
-<ul class="submenu mb10">
-<li><a href="#">主要リンクサンプル</a></li>
-<li><a href="#">主要リンクサンプル</a></li>
-<li><a href="#">主要リンクサンプル</a></li>
-</ul>
-</nav>
-
-<aside>
-<h2>関連情報</h2>
-<ul class="submenu">
-<li><a href="#">関連情報リンク</a></li>
-<li><a href="#">関連情報リンク</a></li>
-<li><a href="#">関連情報リンク</a></li>
-</ul>
-</aside>
-
 <div class="box1">
 <section>
-<h2>この見出しはh2タグです</h2>
-<p>このボックスは、class="box1"と指定すれば出ます。</p>
+<h2>カレンダー</h2>
+<script language="javascript">
+//日付と時間の設定
+now = new Date();
+year = now.getYear();
+if (year < 1900) year += 1900;
+mon = now.getMonth()+1;
+day = now.getDate();
+you = now.getDay();
+
+//曜日の選択肢
+youbi = new Array("&nbsp;日&nbsp;","&nbsp;月&nbsp;","&nbsp;火&nbsp;","&nbsp;水&nbsp;","&nbsp;木&nbsp;","&nbsp;金&nbsp;","&nbsp;土&nbsp;");
+youbi_color = new Array("ff0000","","","","","","0000ff");
+
+//表示の設定
+today = year + "年" + mon + "月" + day + "日" + "(<font color='" + youbi_color[you] + "'>" + youbi[you] + "</font>)";
+
+//画面に表示
+//document.write(today);
+//document.write("<hr>");
+
+//1日
+fday = new Date(year+"/"+mon+"/1");
+fyou = fday.getDay();
+//末日
+    lday = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+if ((year%4 == 0 && year%100 != 0) || (year%400 == 0)) {lday[1]++;}
+//カレンダー表示
+document.write("<table border='2'>");
+document.write("<tr><th colspan='7'>"+year+"年"+mon+"月</th></tr>");
+document.write("<tr>");
+for (m = 0; m < 7; m++){
+    document.write("<th><font color='" + youbi_color[m] + "'>" + youbi[m] + "</font></th>");
+}
+document.write("</tr>");
+for (n = 0; n < 6; n++) {
+    document.write("<tr>");
+    for (m = 0; m < 7; m++){
+        d = (n*7+m+1-fyou);
+        if (day == d) {document.write("<td align='right' bgcolor='#ffaaaa'>");}
+        else {document.write("<td align='right'>");}
+        if (d > 0 && d <= lday[mon-1]) {document.write("<font color='" + youbi_color[m] + "'>" + d + "</font>");}
+        else {document.write("&nbsp;");}
+        document.write("</td>");
+    }
+    document.write("</tr>");
+    if (d >= lday[mon-1]) break;
+}
+document.write("</table>");
+</script>
 </section>
 </div>
 <!--/box1-->
 
+<div class="box1">
 <section>
-<h2>この見出しはh2タグです</h2>
-<p>ここのスペースも使えます。</p>
+<h2>吉祥寺マップ</h2>
+<div class="ggmap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30928.188859164904!2d139.55906556555084!3d35.709536038539945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018ee45e33d4305%3A0x770cb37aee4fd5e1!2z5p2x5Lqs6YO95q2m6JS16YeO5biCIOWQieelpeWvug!5e0!3m2!1sja!2sjp!4v1515671968773" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe></div>
 </section>
+</div>
+<!--/box1-->
+
+<div class="box1">
+<section>
+<h2>SNSでシェア</h2>
+<a href="http://twitter.com/share?url="><img src="./images/twitter.png"></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u="><img src="./images/facebook.png"></a>
+<a href="http://line.me/R/msg/text/?"><img src="./images/line.png"></a>
+</section>
+</div>
+<!--/box1-->
+
+<div class="box1">
+<section>
+<h2>テーマ</h2>
+<a href="index.html">☆TOP<br></a>
+<a href="eat.html">☆食べる<br></a>
+<a href="shop.html">☆買う<br></a>
+<a href="watch.html">☆観る<br></a>
+<a href="play.html">☆遊ぶ<br></a>
+</section>
+</div>
+<!--/box1-->
+
+<div class="box1">
+<section>
+<h2>自己紹介</h2>
+<p><br><img src="./images/me.png"><br><br>名前: 岡本秀明<br>学籍番号: 15X3026<br>ニックネーム: おっかー<br>血液型: O型<br>研究室: 彌冨研究室<br>好きなもの: ラーメン</p>
+</section>
+</div>
+<!--/box1-->
 
 </div>
 <!--/sub-->
 
 <p id="pagetop"><a href="#">↑ </a></p>
-
 </div>
 <!--/contents-->
 
@@ -138,21 +183,6 @@
 </div>
 
 </footer>
-
-<!--スマホ用更新情報　480px以下-->
-<script type="text/javascript">
-if (OCwindowWidth() <= 480) {
-	open_close("newinfo_hdr", "newinfo");
-}
-</script>
-
-<!--メニューの３本バー-->
-<div id="menubar_hdr" class="close"><span></span><span></span><span></span></div>
-<!--メニューの開閉処理条件設定　480px以下-->
-<script type="text/javascript">
-if (OCwindowWidth() <= 480) {
-	open_close("menubar_hdr", "menubar-s");
-}
 </script>
 </body>
 </html>
