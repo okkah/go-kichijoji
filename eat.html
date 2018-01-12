@@ -105,6 +105,55 @@
 </a>
 </section>
 
+<br>
+
+</section>
+
+<h2>吉祥寺で何を食べる？</h2>
+
+<section class="container">
+<section class="roulette_container" >
+<section class="roulette" style="display:none;">
+<img src="images/eat1.jpg" width="400" height="250">
+<img src="images/eat2.jpg" width="400" height="250">
+<img src="images/eat3.jpg" width="400" height="250">
+<img src="images/eat4.jpg" width="400" height="250">
+<img src="images/eat5.jpg" width="400" height="250">
+<img src="images/eat6.jpg" width="400" height="250">
+<img src="images/eat7.jpg" width="400" height="250">
+</section>
+</section>
+<section class="btn_container">
+<p>
+<button class="btn btn-large btn-primary start"> START </button>
+<button class="stop btn-large btn btn-warning" onclick="GetRandomNumber();"> STOP </button>
+</p>
+</section>
+</section>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+<script src="js/roulette.js"></script>
+<script>
+jQuery(function(){    
+// initialize!
+var option = {
+	speed : 7,
+	 duration : 100,
+}
+$('section.roulette').roulette(option);	
+ 
+// START!
+$('.start').click(function(){
+	$('section.roulette').roulette('start');	
+});
+ 
+// STOP!
+$('.stop').click(function(){
+	$('section.roulette').roulette('stop');	
+});
+});
+ 
+</script>
 </section>
 
 </div>
